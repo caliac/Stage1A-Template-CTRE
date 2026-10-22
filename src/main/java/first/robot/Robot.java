@@ -27,6 +27,8 @@ public class Robot extends OpModeRobot {
 
   private final OnboardIMU(MountOrientation.FLAT);
 
+  private final DrivetrainSim drivetrainSim = new DrivetrainSim(leftLeader, rightLeader);
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -51,5 +53,11 @@ public class Robot extends OpModeRobot {
   }
 
   @Override
-  public void simulationPeriodic() {}
+  public void simulationPeriodic() {
+    drivetrainSim.periodic();
+    intakeLauncherSim.periodic();
+    feederSim.periodic();
+
+    FuelSim.periodic();
+  }
 }
